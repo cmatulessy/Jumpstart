@@ -35,4 +35,5 @@ public class Stopwatch {
         }
         return ((stopTime - startTime) / 1000);
     }
+}
 

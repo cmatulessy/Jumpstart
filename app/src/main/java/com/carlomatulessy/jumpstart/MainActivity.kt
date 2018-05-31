@@ -4,16 +4,20 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.SystemClock
+import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var timer : CountDownTimer
     private var isTimerRunning = false
+    private lateinit var stopwatch: Stopwatch
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        stopwatch = Stopwatch();
 
         timer = object : CountDownTimer(4500, 1000) {
             override fun onFinish() {
@@ -35,11 +39,6 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        chronometer.setOnClickListener { v ->
-            //chronometer.visibility = View.INVISIBLE
-            //lightImageView.visibility = View.VISIBLE
-        }
-
         lightImageView.setImageResource(R.drawable.lights)
         lightImageView.setOnClickListener { v ->
             if(isTimerRunning) {
@@ -50,14 +49,18 @@ class MainActivity : AppCompatActivity() {
                 isTimerRunning = true
             }
         }
+
+        timerTextView.setOnClickListener{
+            timerTextView.visibility = View.INVISIBLE
+            lightImageView.visibility = View.VISIBLE
+        }
     }
 
     private fun createNewRandomLightsOutTimer() : CountDownTimer{
          return object : CountDownTimer(Math.random().toLong(), 1000) {
             override fun onFinish() {
                 lightImageView.setImageResource(R.drawable.lights)
-                chronometer.base = SystemClock.elapsedRealtime()
-                chronometer.start()
+                stopwatch.start()
             }
 
             override fun onTick(millisUntilFinished: Long) {
@@ -67,9 +70,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun stopTimerAndShowTime() {
-        chronometer.stop()
-        //chronometer.visibility = View.VISIBLE
-        //lightImageView.visibility = View.INVISIBLE
+        stopwatch.stop()
+        timerTextView.setText(StringBuilder().append(stopwatch.elapsedTime))
+        timerTextView.visibility = View.VISIBLE
+        lightImageView.visibility = View.INVISIBLE
     }
 
 }
