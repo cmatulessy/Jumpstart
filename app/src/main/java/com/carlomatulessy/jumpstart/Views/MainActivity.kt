@@ -1,10 +1,11 @@
-package com.carlomatulessy.jumpstart
+package com.carlomatulessy.jumpstart.Views
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.SystemClock
 import android.view.View
+import com.carlomatulessy.jumpstart.R
+import com.carlomatulessy.jumpstart.Stopwatch
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
