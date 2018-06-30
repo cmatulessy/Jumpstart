@@ -8,12 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     
-    <style name="TimerText" parent="TextAppearance.AppCompat">
+    <style name="TimerText" parent="@android:style/TextAppearance">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">8dp</item>
-        <item name="textColor">@color/colorRed</item>
-        <item name="textSize">50sp</item>
+        <item name="android:textColor">@color/colorRed</item>
+        <item name="android:textSize">50sp</item>
     </style>
 
 </resources>
